@@ -1,0 +1,10 @@
+[postgres_servers]
+postgres-1 ansible_host=158.160.109.4
+
+
+[otus_cluster:children]
+postgres_servers
+
+[otus_cluster:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/otus_id_rsa

@@ -1,0 +1,6 @@
+---
+- hosts: postgres-1
+  become: true
+
+  roles:
+    - role: install-docker

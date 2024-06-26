@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html data-darkreader-mode="dynamic" data-darkreader-scheme="dark"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style class="darkreader darkreader--fallback" media="screen"></style><style class="darkreader darkreader--text" media="screen"></style><style class="darkreader darkreader--invert" media="screen">.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, ::-webkit-calendar-picker-indicator, img.Wirisformula {
+    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+}</style><style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
+  background-color: var(--darkreader-inline-bgcolor) !important;
+}
+[data-darkreader-inline-bgimage] {
+  background-image: var(--darkreader-inline-bgimage) !important;
+}
+[data-darkreader-inline-border] {
+  border-color: var(--darkreader-inline-border) !important;
+}
+[data-darkreader-inline-border-bottom] {
+  border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+}
+[data-darkreader-inline-border-left] {
+  border-left-color: var(--darkreader-inline-border-left) !important;
+}
+[data-darkreader-inline-border-right] {
+  border-right-color: var(--darkreader-inline-border-right) !important;
+}
+[data-darkreader-inline-border-top] {
+  border-top-color: var(--darkreader-inline-border-top) !important;
+}
+[data-darkreader-inline-boxshadow] {
+  box-shadow: var(--darkreader-inline-boxshadow) !important;
+}
+[data-darkreader-inline-color] {
+  color: var(--darkreader-inline-color) !important;
+}
+[data-darkreader-inline-fill] {
+  fill: var(--darkreader-inline-fill) !important;
+}
+[data-darkreader-inline-stroke] {
+  stroke: var(--darkreader-inline-stroke) !important;
+}
+[data-darkreader-inline-outline] {
+  outline-color: var(--darkreader-inline-outline) !important;
+}
+[data-darkreader-inline-stopcolor] {
+  stop-color: var(--darkreader-inline-stopcolor) !important;
+}
+[data-darkreader-inline-bg] {
+  background: var(--darkreader-inline-bg) !important;
+}
+[data-darkreader-inline-invert] {
+    filter: invert(100%) hue-rotate(180deg);
+}</style><style class="darkreader darkreader--variables" media="screen">:root {
+   --darkreader-neutral-background: #131516;
+   --darkreader-neutral-text: #d8d4cf;
+   --darkreader-selection-background: #004daa;
+   --darkreader-selection-text: #e8e6e3;
+}</style><style class="darkreader darkreader--root-vars" media="screen"></style><style class="darkreader darkreader--user-agent" media="screen">@layer {
+html {
+    background-color: #181a1b !important;
+}
+html {
+    color-scheme: dark !important;
+}
+iframe {
+    color-scheme: initial;
+}
+html, body {
+    background-color: #181a1b;
+}
+html, body {
+    border-color: #736b5e;
+    color: #e8e6e3;
+}
+a {
+    color: #3391ff;
+}
+table {
+    border-color: #545b5e;
+}
+mark {
+    color: #e8e6e3;
+}
+::placeholder {
+    color: #b2aba1;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: #404400 !important;
+    color: #e8e6e3 !important;
+}
+::-webkit-scrollbar {
+    background-color: #202324;
+    color: #aba499;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #454a4d;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #575e62;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #484e51;
+}
+::-webkit-scrollbar-corner {
+    background-color: #181a1b;
+}
+* {
+    scrollbar-color: #454a4d #202324;
+}
+::selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}
+::-moz-selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}
+}</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous"><style class="darkreader darkreader--sync" media="screen"></style>
+	<!-- Yandex Native Ads -->
+	<script type="text/javascript" async="" src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/usability.js"></script><script type="text/javascript" async="" src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/top100.js"></script><script>window.yaContextCb=window.yaContextCb||[]</script><meta name="darkreader" content="10adbdb8b8dd4e9fb7cfbc628e9e2aa7"><style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
+    background-color: #7b5300 !important;
+    border-color: #d8b013 !important;
+    color: #f3e8c8 !important;
+}
+#vimvixen-console-frame {
+    color-scheme: light !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}
+#edge-translate-panel-body,
+.MuiTypography-body1,
+.nfe-quote-text {
+    color: var(--darkreader-neutral-text) !important;
+}
+gr-main-header {
+    background-color: #0f3a48 !important;
+}
+.tou-z65h9k,
+.tou-mignzq,
+.tou-1b6i2ox,
+.tou-lnqlqk {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.tou-75mvi {
+    background-color: #032029 !important;
+}
+.tou-ta9e87,
+.tou-1w3fhi0,
+.tou-1b8t2us,
+.tou-py7lfi,
+.tou-1lpmd9d,
+.tou-1frrtv8,
+.tou-17ezmgn {
+    background-color: #0a0a0a !important;
+}
+.tou-uknfeu {
+    background-color: #231603 !important;
+}
+.tou-6i3zyv {
+    background-color: #19576c !important;
+}
+div.mermaid-viewer-control-panel .btn {
+    background-color: var(--darkreader-neutral-background);
+    fill: var(--darkreader-neutral-text);
+}
+svg g rect.er {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.entityBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxOdd {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxEven {
+    fill: var(--darkreader-selection-background);
+    fill-opacity: 0.8 !important;
+}
+svg rect.er.relationshipLabelBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g g.nodes rect,
+svg g g.nodes polygon {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.task {
+    fill: var(--darkreader-selection-background) !important;
+}
+svg line.messageLine0,
+svg line.messageLine1 {
+    stroke: var(--darkreader-neutral-text) !important;
+}
+div.mermaid .actor {
+    fill: var(--darkreader-neutral-background) !important;
+}
+mitid-authenticators-code-app > .code-app-container {
+    background-color: white !important;
+    padding-top: 1rem;
+}
+iframe#unpaywall[src$="unpaywall.html"] {
+    color-scheme: light !important;
+}
+embed[type="application/pdf"] { filter: invert(100%) contrast(90%); }</style>
+	<script src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/context.js" async=""></script>
+
+ <title>Справка&nbsp;по&nbsp;SQL(DML): Приложения. Описание учебных баз данных и список упражнений</title>
+	<link rel="canonical" href="https://sql-ex.ru/help/select13.php?Lang=0">
+        <link rel="stylesheet" type="text/css" href="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/style.css"><style class="darkreader darkreader--sync" media="screen"></style>
+		<link rel="stylesheet" type="text/css" href="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/help.css"><style class="darkreader darkreader--sync" media="screen"></style>
+
+    	<link rel="stylesheet" title="Default" href="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/default.css"><style class="darkreader darkreader--sync" media="screen" title="Default"></style>
+        <script type="text/javascript" src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/highlight.js"></script>
+        <meta name="Description" content="Самоучитель SQL: Приложения. Описание учебных баз данных и список упражнений.">
+        <meta name="Keywords" content="SQL, руководство, справочник по SQL, справка по языку SQL, sql запросы, упражнения, тестирование, обучение, операторы sql, SELECT, FROM, JOIN, WHERE, GROUP BY, HAVING, INSERT, UPDATE, DELETE, структурированный язык запросов">
+        <meta name="abstract" content="Справочник по языку манипуляции данными SQL с примерами использования всех синтаксических конструкций стандарта языка DML. Особенности использования в MS SQL Server. Справочник сопровождается упражнениями, выполняемыми в режиме он-лайн на сайте.">
+        <meta name="title" content="Справочник по языку манипуляции данными SQL с примерами использования всех синтаксических конструкций стандарта языка DML. Особенности использования в MS SQL Server. Справочник сопровождается упражнениями, выполняемыми в режиме он-лайн на сайте.">
+        <script language="JAVASCRIPT" src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/main.js"></script>
+ </head>
+ <body bgcolor="#F5F5F5" style="--darkreader-inline-bgcolor: #1e2021;" data-darkreader-inline-bgcolor="">
+
+ <a name="ref_beg"></a>
+<!-- Yandex.RTB R-A-184442-11 -->
+<div id="yandex_rtb_R-A-184442-11"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-184442-11',
+    blockId: 'R-A-184442-11'
+  })
+})</script>
+<form name="frmtpl">
+<table width="98%" border="0" cellpadding="5" align="center">
+    <tbody><tr>
+        <td width="33%" bgcolor="#CCCCCC" valign="middle" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor=""><b><a class="none" href="https://www.sql-ex.ru/help/">Синтаксис SQL</a></b></td>
+        <td width="33%" bgcolor="#CCCCCC" align="center" valign="middle" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">
+         Language&nbsp;<select name="lsttpl" onchange="Sel_Lang(document.frmtpl.lsttpl.selectedIndex)"><option value="0" selected="selected"> Русский </option><option value="1"> English </option></select>
+        </td>
+        <td width="33%" bgcolor="#CCCCCC" align="right" valign="middle" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor=""><label for="pages">Страница&nbsp;</label><select name="pages" onchange="location=this.value"><option value="select0.php">Оглавл.</option><option value="select1.php">1</option><option value="select2.php">2</option><option value="select3.php">3</option><option value="select4.php">4</option><option value="select5.php">5</option><option value="select6.php">6</option><option value="select7.php">7</option><option value="select8.php">8</option><option value="select9.php">9</option><option value="select10.php">10</option><option value="select11.php">11</option><option value="select12.php">12</option><option value="select13.php" selected="selected">13</option><option value="select14.php">14</option><option value="select15.php">15</option><option value="select16.php">16</option><option value="select17.php">17</option><option value="select18.php">18</option><option value="select19.php">19</option><option value="select20.php">20</option></select><!-- Top100 (Kraken) Counter -->
+<script>
+    (function (w, d, c) {
+    (w[c] = w[c] || []).push(function() {
+        var options = {
+            project: 718545,
+        };
+        try {
+            w.top100Counter = new top100(options);
+        } catch(e) { }
+    });
+    var n = d.getElementsByTagName("script")[0],
+    s = d.createElement("script"),
+    f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src =
+    (d.location.protocol == "https:" ? "https:" : "http:") +
+    "//st.top100.ru/top100/top100.js";
+
+    if (w.opera == "[object Opera]") {
+    d.addEventListener("DOMContentLoaded", f, false);
+} else { f(); }
+})(window, document, "_top100q");
+</script>
+<noscript>
+  <img src="//counter.rambler.ru/top100.cnt?pid=718545" alt="???-100" />
+</noscript>
+<!-- END Top100 (Kraken) Counter -->
+
+</td>
+</tr>
+</tbody></table>
+</form><a name="apx1"></a>
+<div style="width:90%;position:relative;left:5%;">
+<h1>Приложение 1. Описание учебных баз данных</h1>
+<p>Упражнения выполняются на базах данных, описание которых приводится ниже.
+<a name="db_1"></a></p><h2>1. Компьютерная фирма</h2>
+Схема БД состоит из четырех таблиц:<br>
+Product(maker, model, type)<br>
+PC(code, model, speed, ram, hd, cd, price)<br>
+Laptop(code, model, speed, ram, hd,  price, screen)<br>
+Printer(code, model, color, type, price)<br>
+Таблица Product представляет производителя (maker), номер модели (model)
+ и тип ('PC' - ПК, 'Laptop' - ПК-блокнот или 'Printer' - принтер). 
+Предполагается, что номера моделей в таблице Product уникальны для всех 
+производителей и типов продуктов. В таблице PC для каждого ПК, 
+однозначно определяемого уникальным кодом – code, указаны модель – model
+ (внешний ключ к таблице Product), скорость - speed (процессора в 
+мегагерцах), объем памяти - ram (в мегабайтах), размер диска - hd (в 
+гигабайтах), скорость считывающего устройства - cd (например, '4x') и 
+цена - price (в долларах). Таблица Laptop аналогична таблице РС за 
+исключением того, что вместо скорости CD содержит размер экрана -screen 
+(в дюймах). В таблице Printer для каждой модели принтера указывается, 
+является ли он цветным - color ('y', если цветной), тип принтера - type 
+(лазерный – 'Laser', струйный – 'Jet' или матричный – 'Matrix') и цена -
+ price.<br>
+<center><img src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/computers.gif"></center>
+<a name="db_2"></a><h2>2. Фирма вторсырья</h2>
+Фирма имеет несколько пунктов приема вторсырья. Каждый пункт получает 
+деньги для их выдачи сдатчикам вторсырья. Сведения о получении денег на 
+пунктах приема записываются в таблицу:<br>
+Income_o(point, date, inc)<br>
+Первичным ключом является (point, date). При этом в столбец date 
+записывается только дата (без времени), т.е. прием денег (inc) на каждом
+ пункте производится не чаще одного раза в день. Сведения о выдаче денег
+ сдатчикам вторсырья записываются в таблицу:<br>
+Outcome_o(point, date, out)<br>
+В этой таблице также первичный ключ (point, date) гарантирует отчетность
+ каждого пункта о выданных деньгах (out) не чаще одного раза в день.<br>
+В случае, когда приход и расход денег может фиксироваться несколько раз в
+ день, используется другая схема с таблицами, имеющими первичный ключ 
+code:<br>
+Income(code, point, date, inc)<br>
+Outcome(code, point, date, out)<br>
+Здесь также значения столбца date не содержат времени.<center><img width="90%" src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/income.gif"></center>
+<a name="db_3"></a>
+<!-- Yandex.RTB -->
+<!-- Yandex.RTB R-A-184442-9 -->
+<div id="yandex_rtb_R-A-184442-9"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-184442-9',
+    blockId: 'R-A-184442-9'
+  })
+})</script>
+<h2>3. Корабли</h2>
+Рассматривается БД кораблей, участвовавших во второй мировой войне. Имеются следующие отношения:<br>
+      Classes (class, type, country, numGuns, bore, displacement)<br>
+      Ships (name, class, launched)<br>
+      Battles (name, date)<br>
+      Outcomes (ship, battle, result)  <br>
+Корабли в «классах» построены по одному и тому же проекту, и классу 
+присваивается либо имя первого корабля, построенного по данному проекту,
+ либо названию класса дается имя проекта, которое не совпадает ни с 
+одним из кораблей в БД. Корабль, давший название классу, называется 
+головным.<br>
+Отношение Classes содержит имя класса, тип (bb для боевого (линейного) 
+корабля или bc для боевого крейсера), страну, в которой построен 
+корабль, число главных орудий, калибр орудий (диаметр ствола орудия в 
+дюймах) и водоизмещение ( вес в тоннах). В отношении Ships записаны 
+название корабля, имя его класса и год спуска на воду. В отношение 
+Battles включены название и дата битвы, в которой участвовали корабли, а
+ в отношении Outcomes – результат участия данного корабля в битве 
+(потоплен-sunk, поврежден - damaged или невредим - OK).  <br>
+Замечания. 1) В отношение Outcomes могут входить корабли, отсутствующие в
+ отношении Ships. 2) Потопленный корабль в последующих битвах участия не
+ принимает.<center><img src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/ships.gif"></center>
+<a name="db_4"></a>
+<h2>4. Аэрофлот</h2>
+Схема БД состоит из четырех отношений:<br>
+Company (ID_comp, name)<br>
+Trip(trip_no, ID_comp, plane, town_from, town_to, time_out, time_in)<br>
+Passenger(ID_psg, name)<br>
+Pass_in_trip(trip_no, date, ID_psg, place)<br>
+Таблица Company содержит идентификатор и название компании, 
+осуществляющей перевозку пассажиров. Таблица Trip содержит информацию о 
+рейсах: номер рейса, идентификатор компании, тип самолета, город 
+отправления, город прибытия, время отправления и время прибытия. Таблица
+ Passenger содержит идентификатор и имя пассажира. Таблица Pass_in_trip 
+содержит информацию о полетах: номер рейса, дата вылета (день), 
+идентификатор пассажира и место, на котором он сидел во время полета. 
+При этом следует иметь в виду, что<br>
+- рейсы выполняются ежедневно, а длительность полета любого рейса менее суток; town_from &lt;&gt; town_to;<br>
+- время и дата учитывается относительно одного часового пояса;<br>
+- время отправления и прибытия указывается с точностью до минуты;<br>
+- среди пассажиров могут быть однофамильцы (одинаковые значения поля name, например, Bruce Willis);<br>
+- номер места в салоне – это число с буквой; число определяет номер 
+ряда, буква (a – d) – место в ряду слева направо в алфавитном порядке;<br>
+- связи и ограничения показаны на схеме данных.<center><img src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/aero.gif"></center>
+<a name="db_5"></a><h2>5. Окраска</h2>
+Схема базы данных состоит из трех отношений:<br>
+utQ (Q_ID int, Q_NAME varchar(35)); utV (V_ID int, V_NAME varchar(35), 
+V_COLOR char(1)); utB (B_DATETIME datetime, B_Q_ID int, B_V_ID int, 
+B_VOL tinyint).<br>
+Таблица utQ содержит идентификатор и название квадрата, цвет которого первоначально черный.<br>
+Таблица utV содержит идентификатор, название и цвет баллончика с краской.<br>
+Таблица utB содержит информацию об окраске квадрата баллончиком:  время 
+окраски, идентификатор квадрата, идентификатор баллончика, количество 
+краски.<br>
+При этом следует иметь в виду, что:<br>
+- баллончики с краской могут быть трех цветов - красный V_COLOR='R', зеленый V_COLOR='G', голубой V_COLOR='B' (латинские буквы).<br>
+- объем баллончика равен 255 и первоначально он полный;<br>
+- цвет квадрата определяется по правилу RGB, т.е. R=0,G=0,B=0 - черный, R=255, G=255, B=255 - белый;<br>
+- запись в таблице закрасок utB уменьшает количество краски в баллончике
+ на величину B_VOL и соответственно увеличивает количество краски в 
+квадрате на эту же величину;<br>
+- значение 0 &lt; B_VOL &lt;= 255;<br>
+- количество краски одного цвета в квадрате не превышает 255, а количество краски в баллончике не может быть меньше нуля;<br>
+- время окраски B_DATETIME дано с точностью до секунды, т.е. не содержит миллисекунд.<center><img src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/painting.gif"></center>
+<a name="db_8"></a><h2>6. Футбольный клуб</h2>
+Чемпионат страны по футболу. Информация об одном сезоне одной команды. Каждая игра длится ровно 90 минут.<br>
+Таблицы<br>
+Игроки: Players (player_id, first_name, last_name, nickname, citizenship, dob, role)<br>
+player_id - номер на футболке, nickname - имя на футболке, citizenship -
+ гражданство (NULL, если местный), dob – дата рождения, role - амплуа;<br>
+Игры: Games(game_id, team, city, goals, game_date, own)<br>
+game_id - номер тура, team - команда-соперник, city - город, где 
+проводится матч (NULL, если дома), goals - голы, которые забил соперник,
+ включая собственные автоголы (NULL, если не было забито), game_date - 
+дата/время матча, own - автоголы соперника (NULL, если таких не было);<br>
+Участие в игре: Lineups(start, game_id, player_id, time_in, goals, cards)<br>
+start - 'B' - игрок вышел в стартовом составе, 'S' – начал матч в 
+запасе; time_in - число минут, проведенных игроком на поле (NULL, если 
+не выходил); goals - число голов, которые игрок забил в матче (NULL, 
+если не забивал); cards – карточки: 'Y' (желтая), 'Y2' (две желтые), 'R'
+ (прямая красная), 'YR' (желтая+прямая красная), NULL (карточек не 
+было).<br>
+<center><img src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/fc.png" width="500"></center>
+
+
+<a name="apx2"></a><h1>Приложение 2. Список упражнений (SELECT)</h1>
+<p>Ниже приводится список рейтинговых упражнений первого этапа, 
+необязательных к решению с точки зрения сертификации и продвижения по 
+этапам.<br>
+Указывается номер, под которым упражнение фигурирует в
+заданиях, номер базы данных, к которой относится упражнение, и уровень сложности.<br><br>
+<style type="text/css">
+<!--
+.cell {
+    border:#750000 solid 1px;
+    cursor:pointer;
+    color:#750000;
+}
+.inv {
+	display:none;
+}
+-->
+</style><style class="darkreader darkreader--sync" media="screen"></style></p><table border="0" cellpadding="5" align="center"><tbody><tr><td align="center" bgcolor="#D3DCE3" style="--darkreader-inline-bgcolor: #2c3032;" data-darkreader-inline-bgcolor=""><b>Номер</b></td><td align="center" bgcolor="#D3DCE3" style="--darkreader-inline-bgcolor: #2c3032;" data-darkreader-inline-bgcolor=""><b>База</b></td><td align="center" bgcolor="#D3DCE3" style="--darkreader-inline-bgcolor: #2c3032;" data-darkreader-inline-bgcolor=""><b>Уровень</b></td><td align="center" bgcolor="#D3DCE3" style="--darkreader-inline-bgcolor: #2c3032;" data-darkreader-inline-bgcolor=""><b>Упражнение</b></td></tr>
+<tr><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">-1</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">5</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor=""><a class="let" href="http://www.sqlbooks.ru/readarticle.aspx?part=09&amp;file=addition12" target="_blank">Методом наименьших квадратов</a> найти линейную зависимость мгновенного расхода краски от времени:   
+V = at + b,   
+где   V - расход краски; t - время в секундах, отсчитываемое от первой окраски (t = 0).  
+Вывод: a с 8-ю знаками после десятичной точки;  b - с 2-мя знаками после десятичной точки.  </td></tr>
+<tr><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">-2</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">3</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">Для
+ каждой страны определить год, когда на воду было спущено максимальное 
+количество ее кораблей. В случае, если окажется несколько таких лет, 
+взять минимальный из них.  
+Вывод: страна, количество кораблей, год
+Замечание. Учитывать только корабли с известным годом спуска на воду.</td></tr>
+<tr><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">-3</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">5</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">На планете <a class="let" href="http://www.sql-tutorial.ru/ru/book_torus_planet.html">Торус 6x4</a>
+ живут торусианцы трёх цветов (красные, зелёные и синие).
+Первые 24 квадрата таблицы utQ, отсортированные по Q_ID - страны 
+планеты:
+Т00 - первый квадрат
+Т03 - четвёртый квадрат
+Т10 - пятый квадрат
+T53 - двадцать четвертый квадрат 
+Количество краски на квадрате - численность торусианцев соответствующего
+ цвета в стране (R, G, B).
+В день рождения Меркадота все торусианцы в каждой стране разбиваются на 
+группы - 8 групп каждого цвета; численность каждой группы определяется 
+как R/8, G/8, B/8 - и направляются в 8 соседних стран (по одной группе 
+каждого цвета на страну). 
+Не попавшие в группы торусианцы в количестве R%8, G%8, B%8 остаются 
+дома.
+Найти количество торусианцев каждого цвета в каждой стране в этот 
+знаменательный день.
+Вывести на карте Меркадота для страны "Т00" количество торусианцев 
+каждого цвета в странах Txy (x - номер строки, y - номер столбца) в 
+формате "Txy - cccR cccG cccB", где Txy - название страны, ccc - 
+количество с ведущими нулями.
+</td></tr>
+<tr><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">-4</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">5</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">Найти квадраты, время между первой и последней окраской которых превышает среднее время по всем окрашенным квадратам.
+Вывести название квадрата и наибольшее время между двумя его последовательными окрасками в секундах.</td></tr>
+<tr><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">-5</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">3</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">В
+ таблице Battles кроме крупных битв с участием многих кораблей 
+содержатся также записи, начинающиеся с символа #, содержащие информацию
+ о мелких стычках. Связанные инциденты объединены в группы от 1 до 6 
+стычек.
+Формат наименования для таких записей следующий:
+- после # идет код группы инцидентов (не содержит цифр, может 
+отсутствовать)
+- далее идет номер группы в журнале регистрации (целое число, 
+присутствует обязательно)
+- далее указывается номер инцидента внутри группы. Инциденты могут 
+нумероваться арабскими и римскими цифрами, буквами латинского алфавита с
+ различными разделителями, например a,b,c... /1,/2,/3... .1,.2,.3... 
+i,ii,iii... и т.п.
+Нумерация едина для всей группы и не содержит пропусков.
+Первая или единственная стычка в группе может не иметь дополнительного 
+номера.
+Требуется вывести список стычек, отсортированный по коду группы, номеру 
+группы, дополнительному номеру. 
+Вывод: наименование стычки, номер по порядку (начиная с 1)</td></tr>
+<tr><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">-6</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">4</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">Опираясь
+ на утверждение, что одна секунда полета каждого пассажира приносит 
+перевозчику 1 цент (0.01$) дохода, провести АВС-анализ привлекательности
+ пассажиров вне зависимости от перевозчика.
+В основе метода лежит принцип Парето - 20% всех товаров дают 80% 
+оборота. При выполнении анализа пассажиры делятся на 3 категории по 
+степени их ценности: А, В и С.
+Порядок проведения анализа:
+1. Рассчитываем долю дохода пассажира от общей суммы дохода, приносимой 
+всеми пассажирами, с накопительным итогом. Доля с накопительным итогом 
+высчитывается путём прибавления доли конкретного пассажира к сумме долей
+ пассажиров с не меньшей долей дохода (при одинаковой доле дохода 
+меньший накопительный итог будет у пассажира, имя которого идет раньше в
+ алфавитном порядке).
+2. Выделяем категории А,В и С. Категория А - округленная до двух 
+десятичных знаков накопительная доля с 0,00% по 80,00% включительно, 
+категория В - с 80,01% до 95,00%, категория С - с 95,01% до 100%.
+Вывод: имя пассажира, сумма прибыли в долларах, доля с накопительным 
+итогом в процентах (точность - 2 знака после запятой), категория (А, В 
+или С - буквы латинские)
+</td></tr>
+<tr><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">-7</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">В таблице Product найти модели, у которых первый символ представляет собой четную цифру, а последний - нечетную.
+При этом первый символ должен быть меньше последнего.
+Вывод: номер модели, тип модели, произведение первой и последней цифр в номере модели
+</td></tr>
+<tr><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">-8</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">Фирма
+ открывает новые пункты по приему вторсырья.
+При открытии, каждому из них были выданы "подъемные" в размере 20 т.р.
+Каждому из пунктов была поставлена задача об увеличении первоначального 
+капитала до 150%, с отчетностью - один раз в день. Используя одну только
+ таблицу Outcome_o и при условии, что пункты работают с двойной 
+накруткой, то есть на каждый выплаченный сдатчику рубль они получают 
+доход 2 рубля, найти:
+- Для пунктов, справившихся с заданием, определить дату его выполнения и
+ сумму денежных средств, полученных сверх плана на эту дату;
+- Для пунктов, которые не справились с заданием, определить на последнюю
+ отчетную дату сумму денежных средств, недостающих до его выполнения.
+Вывод: пункт, дата выполнения (или последний день), сумма сверх плана 
+(или недостающую сумму до плана).</td></tr>
+<tr><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">-9</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">3</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">В таблице Outcomes один и тот же корабль может встречаться неоднократно (принимал участие в нескольких сражениях).
+Требуется найти корабли, имена которых различаются только регистром букв, например, "Duke of York" и "duke Of york".
+Вывод: имя корабля (любой из вариантов), число различных вариантов написания имени данного корабля в таблице.</td></tr>
+<tr><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">-10</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">4</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">Отобразить
+ карту полётов на статических картах Google.
+На карте вывести только уникальные направления полётов таким образом, 
+что название первого города раньше по алфавиту, чем название второго 
+города.
+Например, если есть рейс из Рима в Берлин, но нет из Берлина в Рим, то 
+вывести направление Берлин-Рим. Или если есть оба рейса, из Милана в 
+Мадрид и из Мадрида в Милан, то вывести только направление Мадрид-Милан.
+Полученные направления вывести в алфавитном порядке их городов.
+Для каждого города вывести метки с первой буквой его названия.
+В итоге должна получиться строка следующего вида (без переводов строк):
+&lt;img src="http://maps.googleapis.com/maps/api/staticmap
+?path=weight:3|Aaa|Bbb
+&amp;path=weight:3|Aaa|Ccc
+&amp;path=weight:3|Bbb|Ccc
+&amp;markers=label:A|Aaa
+&amp;markers=label:B|Bbb
+&amp;markers=label:C|Ccc
+&amp;size=512x512&amp;sensor=false"&gt;
+
+где
+&lt;img src="http://maps.googleapis.com/maps/api/staticmap - это 
+указание использовать статические карты Google;
+?path=weight:3|Aaa|Bbb - первое направление, из пункта Aaa в Bbb, с 
+толщиной линии 3;
+&amp;path=weight:3|... - все следующие направления;
+&amp;markers=label:A|Aaa - метка (A) города Aaa;
+&amp;size=512x512 - указание размера карты 512x512;
+&amp;sensor=false"&gt; - обязательный параметр.</td></tr>
+<tr><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">-11</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">3</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">Для каждого корабля из таблицы Ships вывести его название в base64 (<a class="let" href="http://ru.wikipedia.org/wiki/Base64" target="_blank">wikipedia</a>).
+Вывод: name, base64name.</td></tr>
+<tr><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">-12</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">4</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">В аэропорту математик Иванов развлекал себя подсчетом факториала от номера рейса.
+Для каждого рейса в Trip определите на сколько нулей оканчивается вычисленное Ивановым число.
+Замечание: номер рейса содержит не более 4 цифр. 
+Вывод: trip_no, число нулей.
+</td></tr>
+<tr><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">-13</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">4</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">Определить
+ количество перевезенных пассажиров за каждый календарный день (по дате 
+вылета) первого полугодия 2003 года, начиная от даты первого рейса и 
+заканчивая датой последнего рейса в этом полугодии. Полугодием считать 
+интервал с (01.01.03 по 30.06.03). Вывести дату, количество пассажиров. </td></tr>
+<tr><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">-14</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">3</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">Вывести
+ названия только тех классов, у которых каждый корабль имеет такое имя, 
+что любой его символ встречается в названии какого-либо класса.
+Замечание: регистр букв при сравнении не учитывается.</td></tr>
+<tr><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">-15</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">5</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">На
+ плоском песчаном пляже в координатах B_Q_ID, B_V_ID установлены круглые
+ пляжные зонтики радиуса B_VOL. Зонтики параллельны песку, солнце в 
+зените. Каждое значение B_DATETIME - отдельная задача. Найти площадь 
+тени для каждого B_DATETIME.
+Вывод: B_DATETIME, площадь тени округлённая до целых.</td></tr>
+<tr><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">-16</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">Найти
+ такие пункты приема, которые имеют в таблице Outcome записи на каждый 
+рабочий день в течение некоторой недели (календарные дни, исключая 
+субботу и воскресенье).
+Вывод: номер пункта, дата понедельника полной рабочей недели в формате 
+"YYYY-MM-DD", суммарное значение out за эту рабочую неделю.</td></tr>
+<tr><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">-17</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">4</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">1</td><td bgcolor="#DDDDDD" style="--darkreader-inline-bgcolor: #2b2f31;" data-darkreader-inline-bgcolor="">Номера рейсов, упорядоченные по возрастанию, конкатенировать в строку. 
+Разбить полученную строку по 3 символа, начиная слева; лишние символы отбросить.
+Считая каждую трехсимвольную строку числом, найти сумму таких чисел, а также минимальное и максимальное значения.
+Вывод: минимальное значение, максимальное значение, сумма значений.</td></tr>
+<tr><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">-18</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">2</td><td bgcolor="#CCCCCC" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">Рассматриваются
+ таблицы Income и Income_o, записи в них относятся к одинаковым пунктам.
+Учесть для каждого пункта, что в интервале между первой и последней 
+датами прихода на него денег, пункт работал во все даты, зафиксированные
+ в используемых таблицах для любых пунктов.
+Для каждого из пунктов с наибольшим средним приходом денег за рабочий 
+день определить дату(даты) с максимальным приходом денег на этот пункт. 
+Для этих дат вывести ВСЮ имеющуюся информацию из таблиц: point, date, 
+inc, code (или NULL, если запись относится к Income_o).</td></tr>
+</tbody></table></div><br><br>
+<center>
+<small>
+
+</small>
+</center>
+<br><br><p></p>
+<!-- раскраска -->
+  	<script type="text/javascript">
+      hljs.initHighlightingOnLoad('sql');
+    </script><script type="text/javascript" src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/sql.js"></script>
+
+<center>
+<a href="https://www.sql-ex.ru/help/select12.php">Назад</a> | <a href="https://www.sql-ex.ru/help/select0.php">Содержание</a> | <a href="https://www.sql-ex.ru/help/select14.php">Вперед</a><br><br>
+<!-- Yandex.RTB --><!-- Yandex.RTB R-A-184442-10 -->
+<!--
+<div id="yandex_rtb_R-A-184442-10"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-184442-10',
+    blockId: 'R-A-184442-10'
+  })
+})</script>
+-->
+<!-- Yandex.RTB R-A-184442-21 -->
+<div id="yandex_rtb_R-A-184442-21"></div>
+<script>window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-184442-21",
+		"renderTo": "yandex_rtb_R-A-184442-21",
+		"type": "feed"
+	})
+})
+</script></center>
+
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" valign="middle" style="--darkreader-inline-bgcolor: #35393b;" data-darkreader-inline-bgcolor="">
+ <tbody><tr>
+ <td align="center" width="15%" onmouseout="this.style.backgroundColor='#CCCCCC'" onmouseover="this.style.backgroundColor='#DDDDDD'"><a href="https://www.sql-ex.ru/" style="font-size: 8pt;">Начало</a></td>
+ <td align="center" width="15%" onmouseout="this.style.backgroundColor='#CCCCCC'" onmouseover="this.style.backgroundColor='#DDDDDD'"><a href="https://www.sql-ex.ru/exercises.php" target="exercises" style="font-size: 8pt;">Упражнения <b>SELECT (рейтинговые этапы)</b></a></td>
+ <td align="center" width="15%" onmouseout="this.style.backgroundColor='#CCCCCC'" onmouseover="this.style.backgroundColor='#DDDDDD'"><a href="https://www.sql-ex.ru/dmlexercises.php" target="exercises" style="font-size: 8pt;">Упражнения <b>DML</b></a></td>
+ <td align="center" width="15%" onmouseout="this.style.backgroundColor='#CCCCCC'" onmouseover="this.style.backgroundColor='#DDDDDD'"><a href="https://www.sql-ex.ru/developers.php" style="font-size: 8pt;">Разработчики</a></td>
+ <td align="right" width="20%">
+
+<!--LiveInternet counter--><script language="JavaScript"><!--
+document.write('<a href="http://www.liveinternet.ru/click" '+
+'target="_blank"><img src="https://counter.yadro.ru/hit?t16.2;r'+
+escape(document.referrer)+((typeof(screen)=='undefined')?'':
+';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+';u'+escape(document.URL)+
+';'+Math.random()+'" title="liveinternet.ru: число просмотров и посетителей за сутки и за сегодня" border="0" width="88" height="31"></a>')//--></script><a href="http://www.liveinternet.ru/click" target="_blank"><img src="%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BF%D0%BE%20SQL(DML)_%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9_files/hit.gif" title="liveinternet.ru: число просмотров и посетителей за сутки и за сегодня" border="0" width="88" height="31"></a>
+<!--/LiveInternet-->
+
+ </td></tr>
+</tbody></table>
+</body></html>

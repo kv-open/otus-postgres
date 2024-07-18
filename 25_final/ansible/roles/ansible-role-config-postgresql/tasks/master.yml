@@ -1,0 +1,9 @@
+- name: mount nfs
+  tags:
+  - fstab
+  ansible.builtin.lineinfile:
+    dest: /etc/fstab
+    regexp: '^192.168.137.53'
+    line: '192.168.137.53:/opt/backup/                   /opt/backup                nfs     rw,sync,hard,intr,noexec              0 0'
+    backup: true
+  notify: exec mount

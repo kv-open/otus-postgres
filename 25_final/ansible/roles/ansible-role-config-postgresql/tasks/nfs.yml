@@ -1,0 +1,21 @@
+- name: install nfs server
+  apt:
+    name: nfs-kernel-server
+    state: present
+
+- name: Make sure a service unit is running
+  ansible.builtin.systemd:
+    name: nfs-kernel-server.service
+    state: started
+    enabled: yes
+
+- name: copy nfs server exports config
+  tags:
+  - update_nfs
+  template:
+    src: files/nfs/exports
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: '0644'
+  notify: update nfs exports

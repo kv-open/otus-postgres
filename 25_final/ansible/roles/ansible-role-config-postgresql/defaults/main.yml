@@ -78,6 +78,7 @@ retention_redundancy: 2
 backup_cron_minute: "30"
 backup_cron_hour: "03"
 
+postgres_master_ip_address: 192.168.137.52
 # Переменная управляет на каком хосте будет делаться бекап (master/replica)
 make_backup_from_this_host: true
 

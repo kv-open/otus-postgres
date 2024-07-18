@@ -27,3 +27,12 @@
 
 - name: "Import tasks custom_users.yml"
   import_tasks: custom_users.yml
+
+- name: "Include tasks for NFS. Replica Host only"
+  import_tasks: nfs.yml
+  when: is_it_primary == false
+
+
+- name: "Include tasks for master"
+  import_tasks: master.yml
+  when: is_it_primary == true

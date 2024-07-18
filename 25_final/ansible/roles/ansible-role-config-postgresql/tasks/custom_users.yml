@@ -18,6 +18,6 @@
     login_password: "{{ postgres_password }}"
     db: postgres
     query: "{{ item }}"
-  # register: result
   loop:
     - GRANT pg_monitor TO srv_zabbix;
+  ignore_errors: true

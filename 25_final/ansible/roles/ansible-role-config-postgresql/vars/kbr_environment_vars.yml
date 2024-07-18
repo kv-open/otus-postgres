@@ -1,0 +1,17 @@
+cluster_name: nbs-kbr
+vm_overcommit_memory: 2
+shared_buffers: 8192MB
+effective_cache_size: 22GB
+work_mem: 32MB
+maintenance_work_mem: 25GB
+oracle_golden_gate: 10.36.201.17
+
+# Worker Processes Configuration
+max_worker_processes: 10
+max_parallel_workers: 10
+max_parallel_maintenance_workers: 8
+max_parallel_workers_per_gather: 8
+
+# pgpro_scheduler
+schedule_max_workers: 2
+schedule_max_parallel_workers: 2

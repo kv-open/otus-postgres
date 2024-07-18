@@ -1,0 +1,7 @@
+- name: copy clear.sh
+  template:
+    src: files/clear.sh
+    dest: "/opt/scripts/postgres/clear.sh"
+    owner: postgres
+    group: postgres
+    mode: 0744

@@ -1,0 +1,12 @@
+- name: Create replications slot
+  tags:
+    - conf_replica
+  community.postgresql.postgresql_query:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    db: postgres
+    query: |
+          SELECT pg_create_physical_replication_slot('slot1');
+  ignore_errors: true
+  when: create_replications_slot is defined

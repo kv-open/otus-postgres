@@ -1,0 +1,23 @@
+- name: Create user srv_zabbix
+  tags:
+    - srv_zabbix
+  community.postgresql.postgresql_user:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    db: postgres
+    name: "srv_zabbix"
+    password: "{{ srv_zabbix_sql_user_password }}"
+
+- name: Grants for srv_zabbix
+  tags:
+    - srv_zabbix
+  community.postgresql.postgresql_query:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    db: postgres
+    query: "{{ item }}"
+  # register: result
+  loop:
+    - GRANT pg_monitor TO srv_zabbix;

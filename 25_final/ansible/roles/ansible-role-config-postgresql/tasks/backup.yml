@@ -1,0 +1,163 @@
+- name: copy pg_probackup distribs
+  tags:
+  - pg_probackup
+  copy:
+    src: files/distribs/pg_probackup/pg-probackup-16_2.5.15-1.ac92457c2d1cfe43fced5b1167b5c90ecdc24cbe.buster_amd64.deb
+    dest: /opt/
+    owner: postgres
+    group: postgres
+    mode: 0755
+
+- name: Install pg_probackup
+  ansible.builtin.apt:
+    deb: /opt/pg-probackup-16_2.5.15-1.ac92457c2d1cfe43fced5b1167b5c90ecdc24cbe.buster_amd64.deb
+
+- name: copy archive command scripts
+  tags:
+  - update_archive_command_scripts
+  template:
+    src: files/backup_scripts/archive_command.sh
+    dest: /opt/scripts/postgres/backup/archive_command.sh
+    owner: postgres
+    group: postgres
+    mode: 0755
+  when: archive_command is defined|default(omit)
+
+- name: copy .pgpass
+  tags:
+  - update_backup_scripts
+  template:
+    src: files/.pgpass
+    dest: /var/lib/postgresql/
+    owner: postgres
+    group: postgres
+    mode: 0600
+  when: backup_path is defined|default(omit)
+
+- name: Create database backupdb
+  community.postgresql.postgresql_db:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    name: backupdb
+    comment: pgprobackup
+  when: is_it_primary|bool == true
+
+- name: create backup user
+  community.postgresql.postgresql_user:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    db: backupdb
+    name: backup
+    password: "{{ backup_user_password }}" # todo настроить аутентификацию изменив pg_hba
+  when: is_it_primary|bool == true
+
+- name: configure permissiong
+  tags:
+    - create_database
+  community.postgresql.postgresql_query:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    db: backupdb
+    query: |
+          ALTER ROLE backup WITH REPLICATION;
+          GRANT USAGE ON SCHEMA pg_catalog TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.current_setting(text) TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.set_config(text, text, boolean) TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.pg_is_in_recovery() TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.pg_backup_start(text, boolean) TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.pg_backup_stop(boolean) TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.pg_create_restore_point(text) TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.pg_switch_wal() TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.pg_last_wal_replay_lsn() TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.txid_current() TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.txid_current_snapshot() TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.txid_snapshot_xmax(txid_snapshot) TO backup;
+          GRANT EXECUTE ON FUNCTION pg_catalog.pg_control_checkpoint() TO backup;
+          GRANT SELECT ON TABLE pg_catalog.pg_database TO backup;
+  ignore_errors: true 
+  when: is_it_primary|bool == true
+
+- name: init backup dir
+  ansible.builtin.shell: sudo su - postgres -c "pg_probackup-16 init --backup-path {{ backup_path }}"
+  args:
+    executable: /bin/bash
+  ignore_errors: true 
+  when: init_backup is defined and is_it_primary|bool == true
+
+- name: add instance
+  ansible.builtin.shell: sudo su - postgres -c "pg_probackup-16 add-instance --backup-path {{ backup_path }} -D {{ postgres_data_directory }} --instance=CPPK"
+  args:
+    executable: /bin/bash
+  ignore_errors: true 
+  when: init_backup is defined and is_it_primary|bool == true
+
+- name: configure instance
+  tags:
+    - set_backup_config
+  ansible.builtin.shell: |
+      sudo su - postgres -c "pg_probackup-16 set-config  --instance=CPPK \
+      --backup-path {{ backup_path }} \
+      -D {{ postgres_data_directory }} \
+      --retention-redundancy={{ retention_redundancy }}"
+  args:
+    executable: /bin/bash
+  ignore_errors: true 
+  when: set_backup_config is defined and is_it_primary|bool == true
+
+- name: copy backup scripts
+  tags:
+  - update_backup_scripts
+  template:
+    src: "{{ item }}"
+    dest: /opt/scripts/postgres/backup/
+    owner: postgres
+    group: postgres
+    mode: 0755
+  with_fileglob: "files/backup_scripts/*.sh"
+  when: backup_path is defined|default(omit) and make_backup_from_this_host|bool == true
+
+
+- name: copy backup scripts
+  tags:
+  - update_backup_scripts
+  template:
+    src: "{{ item }}"
+    dest: /opt/scripts/postgres/backup/
+    owner: postgres
+    group: postgres
+    mode: 0755
+  with_fileglob: "files/backup_scripts/*.sh"
+  when: backup_path is defined|default(omit) and make_backup_from_this_host|bool == true
+
+- name: Create job for FULL backup
+  tags:
+  - update_cron
+  ansible.builtin.cron:
+    state: present
+    name: "{{ item.name }}" 
+    user: postgres
+    weekday: "7"
+    minute: "{{ backup_cron_minute }}"
+    hour: "{{ backup_cron_hour }}"
+    job: "{{ item.scripts }}"
+  loop: 
+    - { name: 'postgres full backup',       scripts: '/opt/scripts/postgres/backup/backup_full_postgres.sh' }
+  when: make_backup_from_this_host|bool == true
+
+- name: Create job for INCREMENTAL backup
+  tags:
+  - update_cron
+  ansible.builtin.cron:
+    name: "{{ item.name }}" 
+    state: present
+    user: postgres
+    weekday: "1,2,3,4,5,6"
+    minute: "{{ backup_cron_minute }}"
+    hour: "{{ backup_cron_hour }}"
+    job: "{{ item.scripts }}"
+  loop: 
+    - { name: 'postgres incremental backup',       scripts: '/opt/scripts/postgres/backup/backup_incremental_postgres.sh' }
+  when: make_backup_from_this_host|bool == true

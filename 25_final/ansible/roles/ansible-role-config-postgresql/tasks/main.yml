@@ -1,0 +1,29 @@
+- name: "Include os-specific task"
+  import_tasks: Debian.yml
+  when: ansible_os_family == 'Debian'
+
+# - name: "Include tasks for pgwatch2"
+#   import_tasks: pgwatch2.yml
+#   when: is_it_primary|bool == true
+
+# - name: "Include tasks for create extensions"
+#   import_tasks: extensions.yml
+#   when: is_it_primary|bool == true
+
+- name: "Include tasks for backup"
+  import_tasks: backup.yml
+
+# Настройка подключения по ssh между мастер-реплика. Пока это не нужно
+# - name: "Include tasks for ssh"
+#   import_tasks: ssh.yml
+
+- name: "Include tasks for configure replication"
+  import_tasks: conf_replication.yml
+  when: is_it_primary|bool == true
+
+- name: "Include tasks for replica only"
+  import_tasks: conf_replication.yml
+  when: is_it_primary|bool == false
+
+- name: "Import tasks custom_users.yml"
+  import_tasks: custom_users.yml

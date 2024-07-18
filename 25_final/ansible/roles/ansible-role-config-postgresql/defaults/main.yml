@@ -1,0 +1,94 @@
+cluster_name: otus
+vm_overcommit_memory: 0
+restart_postgres: true # переменная используется в Handlers. Управляет рестартом БД
+
+postgres_major_version: 16
+postgres_data_directory: /var/lib/postgresql/{{ postgres_major_version }}/main
+postgres_config_directory: /etc/postgresql/{{ postgres_major_version }}/main/
+postgres_log_directory: /var/log/postgresql
+
+shared_buffers: 4GB
+effective_cache_size: 12GB
+work_mem: 41MB
+maintenance_work_mem: 819MB
+
+# Checkpoint Related Configuration
+min_wal_size: 2GB
+max_wal_size: 4GB
+checkpoint_completion_target: 0.9
+wal_buffers: -1
+
+# Network Related Configuration
+max_connections: 100
+
+# Storage Configuration
+random_page_cost: 1.1
+effective_io_concurrency: 200
+
+# Worker Processes Configuration
+max_worker_processes: 8
+max_parallel_workers: 8
+max_parallel_maintenance_workers: 4
+max_parallel_workers_per_gather: 4
+
+
+# pgwatch2
+pgwatch2_sql_user: srv_pgwatch2 # учетная запись под которой pgwatch подключается в postgres
+
+
+# extensions_query_list:
+#   queries:
+#     - create extension if not exists pg_stat_statements;
+#     - create extension if not exists pg_wait_sampling;
+#     - create extension if not exists pg_stat_kcache;
+#   db_name:
+#     - stf_das
+#     - stf_das_clickhouse
+#     - stf_dbs
+#     - stf_dpk
+#     - stf_fias
+#     - stf_ics
+#     - stf_kms
+#     - stf_lps
+#     - stf_pki
+#     - stf_ppa
+#     - stf_pci
+
+# additional_permissions_list:
+#   queries:
+#     - GRANT EXECUTE ON FUNCTION pg_ls_dir(text) TO "{{ pgwatch2_sql_user }}";
+
+# backup config
+backup_path: /opt/backup
+backup_user_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          65336164636334623061633431656531356666356363383662386265663333303566373039393162
+          6665323734343439623731623939303562393937313164660a613633616435663536376335356635
+          33373964363265356639333438643437623163633262663166663935323065386464396638323963
+          6563363039373238380a656134643731633561616637666332343261373431613666666336336264
+          65343131613463386331363530316136633231376365626365396364333334383836
+backup_threads: 4
+# Connection parameters
+pghost: localhost
+pguser: backup
+retention_redundancy: 2
+
+# время запуска бекапа для ansible.builtin.cron
+backup_cron_minute: "30"
+backup_cron_hour: "03"
+
+# реплика у нас только на dev3 и ntsprod. Переменная управляет на каком хосте будет делаться бекап (master/replica)
+make_backup_from_this_host: true
+
+# есть таски, которые можно выполнять только на primary ноде
+is_it_primary: true
+
+
+
+srv_zabbix_sql_user_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          35363832313064373935623461663662633962383964323433383066653166613866303539393036
+          6435316135336335326539396432373739333162316637650a643665353430656663313330373239
+          33336332396234346535653730303766376566393939663065393439663261646561613866326131
+          3236336536383132620a303264373535326432376639653933653139303637623064396666386432
+          37613466633964616637643462356266376436666430366532363438386639633837

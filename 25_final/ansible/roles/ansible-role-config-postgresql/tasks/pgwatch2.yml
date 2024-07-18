@@ -1,0 +1,44 @@
+- name: Create user srv_pgwatch2
+  community.postgresql.postgresql_user:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    db: postgres
+    name: "{{ pgwatch2_sql_user }}"
+    password: "{{ pgwatch2_sql_user_password }}"
+  ignore_errors: true 
+
+- name: Grants for {{ pgwatch2_sql_user }}
+  tags:
+    - grants_users
+  community.postgresql.postgresql_query:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    db: postgres
+    query: "{{ item }}"
+  # register: result
+  loop:
+    - GRANT pg_monitor TO "{{ pgwatch2_sql_user }}";
+    - GRANT EXECUTE ON FUNCTION pg_stat_file(text) to "{{ pgwatch2_sql_user }}";
+    - GRANT EXECUTE ON FUNCTION pg_ls_dir(text) TO "{{ pgwatch2_sql_user }}";
+    # - GRANT EXECUTE ON FUNCTION pg_stat_statements_reset() TO "{{ pgwatch2_sql_user }}"; почему-то нет такой функции
+    - GRANT EXECUTE ON FUNCTION pg_wait_sampling_reset_profile() TO "{{ pgwatch2_sql_user }}"; # if pg_wait_sampling extension is used
+    - GRANT CONNECT ON DATABASE postgres TO "{{ pgwatch2_sql_user }}";
+    - GRANT USAGE ON SCHEMA public TO "{{ pgwatch2_sql_user }}";
+  ignore_errors: true 
+
+- name: additional_permissions
+  tags:
+    - create_extension
+  community.postgresql.postgresql_query:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    db: "{{ item.1 }}"
+    query: "{{ item.0 }}"
+  with_nested:
+    - "{{ additional_permissions_list.queries }}"
+    - "{{ extensions_query_list.db_name }}"
+  ignore_errors: true 
+

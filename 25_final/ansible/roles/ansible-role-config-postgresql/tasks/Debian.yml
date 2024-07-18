@@ -1,0 +1,123 @@
+- name: copy configs
+  tags:
+  - update_postgres_config
+  template:
+    src: files/postgresql.conf
+    dest: "{{ postgres_config_directory }}/postgresql.conf"
+    owner: postgres
+    group: postgres
+    mode: 0644
+  notify: restart postgres
+
+# Разрешает подключение с localhost'a без проверки пароля. Нужно для первоначальной установки
+- name: set temporary trust authentication
+  ansible.builtin.lineinfile:
+    dest: "{{ postgres_config_directory }}/pg_hba.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    backup: yes
+  loop:
+    - { regexp: '^host    all             all             127.0.0.1/32.*',  line: 'host    all             all             127.0.0.1/32            trust' }
+  notify: reload postgres
+  when: change_postgress_password is defined|default(omit)
+
+- name: create log directory
+  tags:
+    - update_log
+  ansible.builtin.file:
+    path: "{{ postgres_log_directory }}"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0750'
+
+- name: Flush handlers
+  meta: flush_handlers
+  when: change_postgress_password is defined|default(omit)
+
+- name: Change postgres password
+  tags:
+    - run_simple_query
+  community.postgresql.postgresql_query:
+    login_host: 127.0.0.1
+    login_user: postgres
+    db: postgres
+    query: ALTER USER postgres WITH PASSWORD '{{ postgres_password }}';
+  register: result_password
+  when: change_postgress_password is defined|default(omit)
+
+- name: Print response
+  ansible.builtin.debug:
+    var: result_password
+  when: change_postgress_password is defined|default(omit)
+
+- name: copy pg_hba.conf
+  tags:
+  - update_postgres_configs
+  template:
+    src: files/pg_hba.conf
+    dest: "{{ postgres_config_directory }}/pg_hba.conf"
+    owner: postgres
+    group: postgres
+    mode: 0644
+  notify: reload postgres
+
+- name: copy .bash_profile for postgres
+  tags:
+  - update_bash_profile
+  template:
+    src: files/.bash_profile_for_postgres_user
+    dest: "/var/lib/postgresql/.bash_profile"
+    owner: postgres
+    group: postgres
+    mode: 0640
+
+- name: Flush handlers
+  meta: flush_handlers
+
+- name: configure os
+  tags:
+  - initial_config
+  - update_sysctl
+  sysctl: 
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    sysctl_set: yes
+    reload : yes
+  loop: 
+    # - { name: 'vm.overcommit_memory',    value: '2' }          # никогда не делать overcommit
+    - { name: 'vm.overcommit_memory',    value: '{{ vm_overcommit_memory }}' }
+    - { name: 'vm.admin_reserve_kbytes', value: '1262144' }    # см. man 5 proc /proc/sys/vm/admin_reserve_kbytes
+
+- name: make directories
+  tags:
+    - update_backup_scripts
+  file:
+    path: /opt/scripts/postgres/backup
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0700'
+
+- name: make backup directory
+  tags:
+    - update_backup_scripts
+  file:
+    path: "{{ backup_path }}"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0700'
+  when: backup_path is defined
+
+# https://postgrespro.ru/docs/postgrespro/13/runtime-config-resource#GUC-HUGE-PAGES
+- name: "Copy disable-transparent-huge-pages.service"
+  tags:
+  - update_service_thp
+  copy: 
+    src: "files/disable-transparent-huge-pages.service"
+    dest: "/etc/systemd/system/disable-transparent-huge-pages.service"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  notify: start disable-transparent-huge-pages

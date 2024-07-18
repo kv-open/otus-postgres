@@ -1,0 +1,19 @@
+- name: create ssh directory for postgres user
+  tags:
+    - update_ssh
+  ansible.builtin.file:
+    path: "/var/lib/postgresql/.ssh"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0750'
+
+- name: copy ssh_authorized_keys_file
+  tags:
+    - update_ssh
+  copy:
+    src: "files/ssh/{{ ssh_authorized_keys_file_name }}"
+    dest: "/var/lib/postgresql/.ssh/authorized_keys"
+    owner: postgres
+    group: postgres
+    mode: 0600

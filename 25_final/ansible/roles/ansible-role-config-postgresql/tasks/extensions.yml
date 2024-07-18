@@ -1,0 +1,13 @@
+- name: Create extension
+  tags:
+    - create_extension
+  community.postgresql.postgresql_query:
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+    db: "{{ item.1 }}"
+    query: "{{ item.0 }}"
+  with_nested:
+    - "{{ extensions_query_list.queries }}"
+    - "{{ extensions_query_list.db_name }}"
+  ignore_errors: true 

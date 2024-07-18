@@ -89,6 +89,50 @@ resource "yandex_vpc_subnet" "foo" {
   v4_cidr_blocks = ["192.168.137.0/24"]
 }
 
+# postgres
+resource "yandex_compute_instance" "wordpress_db" {
+  count       = length(var.wordpress_db_name)
+  name        = element(var.wordpress_db_name, count.index)
+  hostname    = element(var.wordpress_db_name, count.index)
+  platform_id = "standard-v2"
+  zone        = "ru-central1-a"
+
+  resources {
+    cores         = 6
+    memory        = 6
+    core_fraction = "100"
+  }
+
+  scheduling_policy {
+    preemptible = true
+  }
+
+  boot_disk {
+    auto_delete = "true"
+    initialize_params {
+      image_id = var.image_id
+      size     = 10
+      type     = "network-ssd"
+    }
+
+  }
+
+  network_interface {
+    subnet_id  = "yandex_vpc_subnet.foo.id"
+    nat        = "true"
+    ip_address = element(var.wordpress_db_server_ip, count.index)
+  }
+
+  metadata = {
+    ssh-keys           = "var.host_user:${file(var.ssh_public_key_file)}"
+    serial-port-enable = 1
+  }
+
+}
+
+
+
+
 resource "yandex_compute_instance" "wordpress" {
   count       = length(var.wordpress_server_name)
   name        = element(var.wordpress_server_name, count.index)

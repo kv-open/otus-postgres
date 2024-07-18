@@ -11,12 +11,12 @@ provider "yandex" {
   zone = "ru-central1-a"
 }
 
-variable "wordpress_db_name" {
+variable "postgres_hostname" {
   type    = list(any)
   default = ["postgres-1", "postgres-2"]
 }
 
-variable "wordpress_db_server_ip" {
+variable "postgres_server_ip" {
   type    = list(any)
   default = ["192.168.137.52", "192.168.137.53"]
 }
@@ -76,7 +76,7 @@ variable "ssh_private_key_file" {
 }
 
 data "yandex_compute_image" "container-optimized-image" {
-  family = "ubuntu-2204-lts"
+  family = "ubuntu-2404-lts-oslogin"
 }
 
 resource "yandex_vpc_network" "lab-net" {
@@ -85,15 +85,15 @@ resource "yandex_vpc_network" "lab-net" {
 
 resource "yandex_vpc_subnet" "lab-subnet-a" {
   zone           = "ru-central1-a"
-  network_id     = "${yandex_vpc_network.lab-net.id}"
+  network_id     = yandex_vpc_network.lab-net.id
   v4_cidr_blocks = ["192.168.137.0/24"]
 }
 
 # postgres
 resource "yandex_compute_instance" "wordpress_db" {
-  count       = length(var.wordpress_db_name)
-  name        = element(var.wordpress_db_name, count.index)
-  hostname    = element(var.wordpress_db_name, count.index)
+  count       = length(var.postgres_hostname)
+  name        = element(var.postgres_hostname, count.index)
+  hostname    = element(var.postgres_hostname, count.index)
   platform_id = "standard-v2"
   zone        = "ru-central1-a"
 
@@ -110,7 +110,7 @@ resource "yandex_compute_instance" "wordpress_db" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
+      image_id = data.yandex_compute_image.container-optimized-image.id
       size     = 10
       type     = "network-ssd"
     }
@@ -118,9 +118,9 @@ resource "yandex_compute_instance" "wordpress_db" {
   }
 
   network_interface {
-    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
+    subnet_id  = yandex_vpc_subnet.lab-subnet-a.id
     nat        = "true"
-    ip_address = element(var.wordpress_db_server_ip, count.index)
+    ip_address = element(var.postgres_server_ip, count.index)
   }
 
   metadata = {
@@ -153,7 +153,7 @@ resource "yandex_compute_instance" "wordpress" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
+      image_id = data.yandex_compute_image.container-optimized-image.id
       size     = 10
       type     = "network-ssd"
     }
@@ -161,7 +161,7 @@ resource "yandex_compute_instance" "wordpress" {
   }
 
   network_interface {
-    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
+    subnet_id  = yandex_vpc_subnet.lab-subnet-a.id
     nat        = "true"
     ip_address = element(var.wordpress_server_ip, count.index)
   }
@@ -193,7 +193,7 @@ resource "yandex_compute_instance" "zabbix" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
+      image_id = data.yandex_compute_image.container-optimized-image.id
       size     = 10
       type     = "network-hdd"
     }
@@ -201,7 +201,7 @@ resource "yandex_compute_instance" "zabbix" {
   }
 
   network_interface {
-    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
+    subnet_id  = yandex_vpc_subnet.lab-subnet-a.id
     nat        = "true"
     ip_address = element(var.zabbix_server_ip, count.index)
   }
@@ -233,7 +233,7 @@ resource "yandex_compute_instance" "elk" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
+      image_id = data.yandex_compute_image.container-optimized-image.id
       size     = 10
       type     = "network-ssd"
     }
@@ -241,7 +241,7 @@ resource "yandex_compute_instance" "elk" {
   }
 
   network_interface {
-    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
+    subnet_id  = yandex_vpc_subnet.lab-subnet-a.id
     nat        = "true"
     ip_address = element(var.elk_server_ip, count.index)
   }
@@ -275,7 +275,7 @@ resource "yandex_compute_instance" "jmeter" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
+      image_id = data.yandex_compute_image.container-optimized-image.id
       size     = 10
       type     = "network-hdd"
     }
@@ -283,7 +283,7 @@ resource "yandex_compute_instance" "jmeter" {
   }
 
   network_interface {
-    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
+    subnet_id  = yandex_vpc_subnet.lab-subnet-a.id
     nat        = "true"
     ip_address = element(var.jmeter_server_ip, count.index)
   }
@@ -302,18 +302,18 @@ resource "local_file" "ansibleInventory" {
   depends_on = [yandex_compute_instance.wordpress]
   content = templatefile("invetory.tpl",
     {
-      wordpress_db_name         = yandex_compute_instance.wordpress_db[*].name,
-      wordpress_db_ipv4-address = yandex_compute_instance.wordpress_db[*].network_interface[0].nat_ip_address,
-      wordpress_name            = yandex_compute_instance.wordpress[*].name,
-      wordpress_ipv4-address    = yandex_compute_instance.wordpress[*].network_interface[0].nat_ip_address,
-      zabbix_name               = yandex_compute_instance.zabbix[*].name,
-      zabbix_ipv4-address       = yandex_compute_instance.zabbix[*].network_interface[0].nat_ip_address,
-      elk_name                  = yandex_compute_instance.elk[*].name,
-      elk_ipv4-address          = yandex_compute_instance.elk[*].network_interface[0].nat_ip_address,
-      jmeter_name               = yandex_compute_instance.jmeter[*].name,
-      jmeter_ipv4-address       = yandex_compute_instance.jmeter[*].network_interface[0].nat_ip_address,
-      ssh_key                   = var.ssh_private_key_file,
-      host_user                 = var.host_user
+      postgres_hostname      = yandex_compute_instance.wordpress_db[*].name,
+      postgres_ipv4_address  = yandex_compute_instance.wordpress_db[*].network_interface[0].nat_ip_address,
+      wordpress_hostname     = yandex_compute_instance.wordpress[*].name,
+      wordpress_ipv4_address = yandex_compute_instance.wordpress[*].network_interface[0].nat_ip_address,
+      zabbix_hostname        = yandex_compute_instance.zabbix[*].name,
+      zabbix_ipv4_address    = yandex_compute_instance.zabbix[*].network_interface[0].nat_ip_address,
+      elk_hostname           = yandex_compute_instance.elk[*].name,
+      elk_ipv4_address       = yandex_compute_instance.elk[*].network_interface[0].nat_ip_address,
+      jmeter_hostname        = yandex_compute_instance.jmeter[*].name,
+      jmeter_ipv4_address    = yandex_compute_instance.jmeter[*].network_interface[0].nat_ip_address,
+      ssh_key                = var.ssh_private_key_file,
+      host_user              = var.host_user
     }
   )
   filename = "../ansible/hl-hosts-new.txt"

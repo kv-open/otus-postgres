@@ -1,0 +1,8 @@
+---
+- name: Install postgres
+  hosts: postgres
+  become: yes
+
+
+  roles:
+    - role: roles/ansible-role-install-simple-postgresql

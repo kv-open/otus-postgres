@@ -76,7 +76,7 @@ variable "ssh_private_key_file" {
 }
 
 data "yandex_compute_image" "container-optimized-image" {
-  family = "ubuntu-2404-lts-oslogin"
+  family = "ubuntu-2204-lts"
 }
 
 resource "yandex_vpc_network" "lab-net" {

@@ -69,23 +69,23 @@ variable "host_user" {
 }
 
 variable "ssh_public_key_file" {
-  default = "~/.ssh/rebrain_id_rsa.pub"
+  default = "~/.ssh/otus_id_rsa.pub"
 }
 variable "ssh_private_key_file" {
-  default = "~/.ssh/rebrain_id_rsa"
+  default = "~/.ssh/otus_id_rsa"
 }
 
-variable "image_id" {
-  default = "fd8mfc6omiki5govl68h" # ubuntu 20.04
+data "yandex_compute_image" "container-optimized-image" {
+  family = "ubuntu-2204-lts"
 }
 
-resource "yandex_vpc_network" "foo" {
+resource "yandex_vpc_network" "lab-net" {
   name = "lab-network"
 }
 
-resource "yandex_vpc_subnet" "foo" {
+resource "yandex_vpc_subnet" "lab-subnet-a" {
   zone           = "ru-central1-a"
-  network_id     = yandex_vpc_network.foo.id
+  network_id     = "${yandex_vpc_network.lab-net.id}"
   v4_cidr_blocks = ["192.168.137.0/24"]
 }
 
@@ -110,7 +110,7 @@ resource "yandex_compute_instance" "wordpress_db" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = var.image_id
+      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
       size     = 10
       type     = "network-ssd"
     }
@@ -118,7 +118,7 @@ resource "yandex_compute_instance" "wordpress_db" {
   }
 
   network_interface {
-    subnet_id  = "yandex_vpc_subnet.foo.id"
+    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
     nat        = "true"
     ip_address = element(var.wordpress_db_server_ip, count.index)
   }
@@ -153,7 +153,7 @@ resource "yandex_compute_instance" "wordpress" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = var.image_id
+      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
       size     = 10
       type     = "network-ssd"
     }
@@ -161,7 +161,7 @@ resource "yandex_compute_instance" "wordpress" {
   }
 
   network_interface {
-    subnet_id  = "yandex_vpc_subnet.foo.id"
+    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
     nat        = "true"
     ip_address = element(var.wordpress_server_ip, count.index)
   }
@@ -193,7 +193,7 @@ resource "yandex_compute_instance" "zabbix" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = var.image_id
+      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
       size     = 10
       type     = "network-hdd"
     }
@@ -201,7 +201,7 @@ resource "yandex_compute_instance" "zabbix" {
   }
 
   network_interface {
-    subnet_id  = "yandex_vpc_subnet.foo.id"
+    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
     nat        = "true"
     ip_address = element(var.zabbix_server_ip, count.index)
   }
@@ -233,7 +233,7 @@ resource "yandex_compute_instance" "elk" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = var.image_id
+      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
       size     = 10
       type     = "network-ssd"
     }
@@ -241,7 +241,7 @@ resource "yandex_compute_instance" "elk" {
   }
 
   network_interface {
-    subnet_id  = "yandex_vpc_subnet.foo.id"
+    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
     nat        = "true"
     ip_address = element(var.elk_server_ip, count.index)
   }
@@ -275,7 +275,7 @@ resource "yandex_compute_instance" "jmeter" {
   boot_disk {
     auto_delete = "true"
     initialize_params {
-      image_id = var.image_id
+      image_id = "${data.yandex_compute_image.container-optimized-image.id}"
       size     = 10
       type     = "network-hdd"
     }
@@ -283,7 +283,7 @@ resource "yandex_compute_instance" "jmeter" {
   }
 
   network_interface {
-    subnet_id  = "yandex_vpc_subnet.foo.id"
+    subnet_id  = "${yandex_vpc_subnet.lab-subnet-a.id}"
     nat        = "true"
     ip_address = element(var.jmeter_server_ip, count.index)
   }

@@ -1,0 +1,12 @@
+---
+- name: Ensure PostgreSQL packages are installed.
+  apt: 
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - postgresql-{{ postgres_version }}
+    - libpq-dev
+    - postgresql-contrib-{{ postgres_version }}
+    - python3-psycopg2
+    - postgresql-client-{{ postgres_version }}

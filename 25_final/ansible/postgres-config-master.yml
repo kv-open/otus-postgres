@@ -1,0 +1,22 @@
+---
+- name: Install and configure postgres
+  hosts: postgres-1
+  become: yes
+
+
+  roles:
+    - role: roles/ansible-role-config-postgresql
+      postgres_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          65316234653236636366363032346564333739353163313162633361633235356333643165313636
+          3632326634323764353238626338353335633466643962650a383664323163313164356139386136
+          36376561396261303233613335333166353632336536323866326464323030643434393932313563
+          3132656534323934630a313436633766306130383462313137373463363734343133333737613634
+          3738
+      change_postgress_password: true
+      is_it_primary: true
+      # Бекап делаем на реплике
+      make_backup_from_this_host: false
+      set_backup_config: true
+      init_backup: true
+      create_replications_slot: true

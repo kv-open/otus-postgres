@@ -10,3 +10,5 @@
     - postgresql-contrib-{{ postgres_version }}
     - python3-psycopg2
     - postgresql-client-{{ postgres_version }}
+    - postgresql-{{ postgres_version }}-pg-stat-kcache
+    - nfs-client

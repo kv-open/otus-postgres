@@ -1,0 +1,7 @@
+*.tfstate*
+*.hcl
+.terraform
+*.mp4
+_postgres.code-workspace
+_демо_база/demo-small.zip
+*.mkv

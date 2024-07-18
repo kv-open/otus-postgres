@@ -6,7 +6,7 @@ export PATH="$PATH:/opt/pgpro/ent-15/bin"
 pg_probackup-16 backup -B {{ backup_path }} \
             -b FULL \
             -h localhost \
-             --instance=CPPK \
+             --instance={{ backup_instance }} \
              --stream \
              -U backup \
              -d backupdb \
@@ -27,7 +27,7 @@ pg_probackup-16 backup -B {{ backup_path }} \
 pg_probackup-16 backup -B {{ backup_path }} \
             -b FULL \
             -h localhost \
-             --instance=CPPK \
+             --instance={{ backup_instance }} \
              -U backup \
              -d backupdb \
              --threads {{ backup_threads }} \

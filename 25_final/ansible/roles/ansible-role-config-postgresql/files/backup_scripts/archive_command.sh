@@ -2,9 +2,8 @@
 # 1 - %f
 # 2 - %p
 export BACKUP_PATH='{{ backup_path }}'
-# pg_probackup-16 archive-push -B "$BACKUP_PATH" --instance NBS --wal-file-path "$2" --wal-file-name "$1" --overwrite --compress
 pg_probackup-16 archive-push -B "$BACKUP_PATH" \
-            --instance NBS \
+            --instance {{ backup_instance }} \
             --wal-file-path "$2" \
             --wal-file-name "$1" \
             --overwrite \

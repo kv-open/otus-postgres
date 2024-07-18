@@ -88,7 +88,7 @@
   when: init_backup is defined and is_it_primary|bool == true
 
 - name: add instance
-  ansible.builtin.shell: sudo su - postgres -c "pg_probackup-16 add-instance --backup-path {{ backup_path }} -D {{ postgres_data_directory }} --instance=CPPK"
+  ansible.builtin.shell: sudo su - postgres -c "pg_probackup-16 add-instance --backup-path {{ backup_path }} -D {{ postgres_data_directory }} --instance={{ backup_instance }}"
   args:
     executable: /bin/bash
   ignore_errors: true 
@@ -98,7 +98,7 @@
   tags:
     - set_backup_config
   ansible.builtin.shell: |
-      sudo su - postgres -c "pg_probackup-16 set-config  --instance=CPPK \
+      sudo su - postgres -c "pg_probackup-16 set-config  --instance={{ backup_instance }} \
       --backup-path {{ backup_path }} \
       -D {{ postgres_data_directory }} \
       --retention-redundancy={{ retention_redundancy }}"

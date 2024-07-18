@@ -1,8 +1,7 @@
 #!/bin/bash
-instance=CPPK
 backup_path={{ backup_path }}
 
-json_data=$(pg_probackup-16 show --instance $instance --backup-path $backup_path --format=json |\
+json_data=$(pg_probackup-16 show --instance {{ backup_instance }} --backup-path $backup_path --format=json |\
     jq '.[] | .backups | .[0]
     | {
      "status": ."status",

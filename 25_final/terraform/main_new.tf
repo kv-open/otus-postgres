@@ -90,7 +90,7 @@ resource "yandex_vpc_subnet" "lab-subnet-a" {
 }
 
 # postgres
-resource "yandex_compute_instance" "wordpress_db" {
+resource "yandex_compute_instance" "postgress" {
   count       = length(var.postgres_hostname)
   name        = element(var.postgres_hostname, count.index)
   hostname    = element(var.postgres_hostname, count.index)
@@ -111,7 +111,7 @@ resource "yandex_compute_instance" "wordpress_db" {
     auto_delete = "true"
     initialize_params {
       image_id = data.yandex_compute_image.container-optimized-image.id
-      size     = 10
+      size     = 50
       type     = "network-ssd"
     }
 
@@ -154,7 +154,7 @@ resource "yandex_compute_instance" "wordpress" {
     auto_delete = "true"
     initialize_params {
       image_id = data.yandex_compute_image.container-optimized-image.id
-      size     = 10
+      size     = 20
       type     = "network-ssd"
     }
 
@@ -194,7 +194,7 @@ resource "yandex_compute_instance" "zabbix" {
     auto_delete = "true"
     initialize_params {
       image_id = data.yandex_compute_image.container-optimized-image.id
-      size     = 10
+      size     = 20
       type     = "network-hdd"
     }
 
@@ -302,8 +302,8 @@ resource "local_file" "ansibleInventory" {
   depends_on = [yandex_compute_instance.wordpress]
   content = templatefile("invetory.tpl",
     {
-      postgres_hostname      = yandex_compute_instance.wordpress_db[*].name,
-      postgres_ipv4_address  = yandex_compute_instance.wordpress_db[*].network_interface[0].nat_ip_address,
+      postgres_hostname      = yandex_compute_instance.postgress[*].name,
+      postgres_ipv4_address  = yandex_compute_instance.postgress[*].network_interface[0].nat_ip_address,
       wordpress_hostname     = yandex_compute_instance.wordpress[*].name,
       wordpress_ipv4_address = yandex_compute_instance.wordpress[*].network_interface[0].nat_ip_address,
       zabbix_hostname        = yandex_compute_instance.zabbix[*].name,

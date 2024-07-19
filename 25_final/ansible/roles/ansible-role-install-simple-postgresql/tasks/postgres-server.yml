@@ -1,4 +1,11 @@
 ---
+# Этот пакет отвечает за initdb опции. Ставим его и делаем необходимые нам настройки локалей и чек-сумм
+- name: Force install postgresql-common
+  apt:
+    name: postgresql-common
+    state: present
+  notify: update_createcluster.conf
+
 - name: Ensure PostgreSQL packages are installed.
   apt: 
     name: "{{ item }}"

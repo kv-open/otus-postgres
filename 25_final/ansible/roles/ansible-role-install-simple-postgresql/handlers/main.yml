@@ -1,0 +1,7 @@
+- name: update_createcluster.conf
+  template:
+    src: files/createcluster.conf
+    dest: /etc/postgresql-common/createcluster.conf
+    owner: root
+    group: root
+    mode: 0644

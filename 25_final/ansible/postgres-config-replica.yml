@@ -1,5 +1,5 @@
 ---
-- name: Install and configure postgres
+- name: Configure postgres-2
   hosts: postgres-2
   become: yes
 
@@ -13,7 +13,9 @@
           36376561396261303233613335333166353632336536323866326464323030643434393932313563
           3132656534323934630a313436633766306130383462313137373463363734343133333737613634
           3738
-      # change_postgress_password: true
+      # change_postgress_password: true # нужна при начальной настройке, после активации реплики отключаем
       is_it_primary: false
+      set_backup_config: true
+      init_backup: true
       # archive_mode: always
       # archive_command: "'/opt/scripts/postgres/backup/archive_command.sh %f %p'"

@@ -1,5 +1,5 @@
 ---
-- name: Install and configure postgres
+- name: Configure postgres-1
   hosts: postgres-1
   become: yes
 

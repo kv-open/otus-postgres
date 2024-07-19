@@ -41,7 +41,7 @@
     login_password: "{{ postgres_password }}"
     name: backupdb
     comment: pgprobackup
-  when: is_it_primary|bool == true
+  when: is_it_primary|bool == false
 
 - name: create backup user
   community.postgresql.postgresql_user:
@@ -51,7 +51,7 @@
     db: backupdb
     name: backup
     password: "{{ backup_user_password }}" # todo настроить аутентификацию изменив pg_hba
-  when: is_it_primary|bool == true
+  when: is_it_primary|bool == false
 
 - name: configure permissiong
   tags:
@@ -85,14 +85,14 @@
   args:
     executable: /bin/bash
   ignore_errors: true 
-  when: init_backup is defined and is_it_primary|bool == true
+  when: init_backup is defined and is_it_primary|bool == false
 
 - name: add instance
   ansible.builtin.shell: sudo su - postgres -c "pg_probackup-16 add-instance --backup-path {{ backup_path }} -D {{ postgres_data_directory }} --instance={{ backup_instance }}"
   args:
     executable: /bin/bash
   ignore_errors: true 
-  when: init_backup is defined and is_it_primary|bool == true
+  when: init_backup is defined and is_it_primary|bool == false
 
 - name: configure instance
   tags:
@@ -105,7 +105,7 @@
   args:
     executable: /bin/bash
   ignore_errors: true 
-  when: set_backup_config is defined and is_it_primary|bool == true
+  when: set_backup_config is defined and is_it_primary|bool == false
 
 - name: copy backup scripts
   tags:

@@ -1,0 +1,12 @@
+- name: reload nginx
+  shell: |
+      /usr/sbin/nginx -t && /usr/sbin/nginx -s reload
+
+- name: restart php-fpm
+  ansible.builtin.systemd:
+    name: php7.4-fpm.service
+    state: restarted
+
+- name: apply sysctl
+  shell: |
+      sysctl -p /etc/sysctl.d/100-sysctl.conf

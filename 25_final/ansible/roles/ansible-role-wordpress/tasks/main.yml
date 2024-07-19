@@ -1,0 +1,57 @@
+- name: install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apache2
+    - php
+    - libapache2-mod-php
+    - php-mysql
+    - php-curl
+    - php-gd
+    - php-mbstring
+    - php-xml
+    - php-xmlrpc
+    - php-soap
+    - php-intl
+    - php-zip
+    - php-pgsql
+
+- name: copy wordpress archive
+  tags:
+  - initial_config
+  copy:
+    src: files/wordpress.zip
+    dest: /home/ubuntu/
+    owner: root
+    group: root
+
+- name: Unarchive wordpress archive
+  tags:
+  - initial_config
+  ansible.builtin.unarchive:
+    src: /home/ubuntu/wordpress.zip
+    dest: /var/www/html/
+    mode: "0755"
+    remote_src: yes
+
+- name: Configure Wordpress "{{ item.name }}" to "{{ item.dest }}"
+  tags:
+  - initial_config
+  - update_app
+  copy:
+    src: "{{ item.name }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { name: files/php/functions.php, dest: /var/www/html/wp-content/themes/twentytwenty/functions.php }
+
+- name: Configure OS parrametres "{{ item.name }}" to "{{ item.dest }}"
+  tags:
+  - initial_config
+  - update_app
+  copy:
+    src: "{{ item.name }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { name: files/os/sysctl.conf, dest: /etc/sysctl.d/100-sysctl.conf }
+  notify: apply sysctl

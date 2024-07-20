@@ -1,0 +1,14 @@
+---
+- name: Install zabbix agent
+  hosts: zabbix
+  become: yes
+
+  roles:
+    - role: community.zabbix.zabbix_agent
+      zabbix_agent2: True
+      zabbix_agent2_server: 192.168.137.13
+      zabbix_agent2_serveractive: 192.168.137.13
+      zabbix_agent2_hostmetadata: otus
+      zabbix_agent_version: 6.0
+      zabbix_agent_allowroot: 1
+      zabbix_install_pip_packages: False

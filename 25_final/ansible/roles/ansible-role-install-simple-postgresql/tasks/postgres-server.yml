@@ -15,6 +15,7 @@
     - postgresql-{{ postgres_version }}
     - libpq-dev
     - postgresql-contrib-{{ postgres_version }}
+    - postgresql-{{ postgres_version }}-pg-wait-sampling
     - python3-psycopg2
     - postgresql-client-{{ postgres_version }}
     - postgresql-{{ postgres_version }}-pg-stat-kcache

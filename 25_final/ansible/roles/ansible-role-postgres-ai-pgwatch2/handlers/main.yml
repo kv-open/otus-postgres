@@ -1,0 +1,15 @@
+# - name: restart pgwatch containers
+#   shell:
+#     name: docker restart "{{ item.name }}"
+#   loop: "{{ containers }}"
+
+- name: restart pgwatch containers
+  community.docker.docker_container:
+    name: "{{ item.name }}"
+    restart: true
+  loop: "{{ containers }}"
+
+- name: restart ufw
+  ansible.builtin.service:
+    name: ufw
+    state: restarted

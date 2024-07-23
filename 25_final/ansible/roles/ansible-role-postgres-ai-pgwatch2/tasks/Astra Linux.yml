@@ -1,0 +1,10 @@
+- name: Install additional packages
+  tags:
+  - install_extensions
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+    allow_change_held_packages: true
+  loop:
+    - python3-requests # необходимо для community.docker.docker_container

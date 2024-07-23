@@ -1,0 +1,40 @@
+# TODO скорее всего не нужно. Удалить после проверки
+# - name: make directories
+#   file:
+#     path: "{{ item }}"
+#     state: directory
+#   loop:
+#     - /etc/pgwatch2/config
+
+- name: make directories
+  file:
+    path: "{{ item.path }}"
+    state: directory
+  loop: "{{ dest_directory }}"
+
+- name: Template instances.yaml
+  template:
+    src: instances.yaml
+    dest: "{{ item.path }}/instances.yaml"
+  vars:
+    postgres_host: "{{ item.postgres_host }}"
+  loop: "{{ dest_directory }}"
+  notify: restart pgwatch containers
+
+- name: Start pgwatch containers
+  community.docker.docker_container:
+    name: "{{ item.name }}"
+    image: postgresai/pgwatch2:1.11.0-1
+    state: started
+    volumes: "{{ item.volumes }}"
+    ports: "{{ item.ports }}"
+    env:
+      PW2_GRAFANANOANONYMOUS: "true"
+      PW2_GRAFANAUSER: "admin"
+      PW2_GRAFANAPASSWORD: "{{ grafana_admin_password }}"
+      PW2_DATASTORE: "postgres"
+      PW2_PG_SCHEMA_TYPE: "timescale"
+      PW2_PG_RETENTION_DAYS: "7"
+      PW2_TIMESCALE_CHUNK_HOURS: "1"
+      PW2_TIMESCALE_COMPRESS_HOURS: "1"
+  loop: "{{ containers }}"

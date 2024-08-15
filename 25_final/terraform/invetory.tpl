@@ -15,10 +15,6 @@ ${wordpress_hostname[index]} ansible_host=${wordpress_ipv4_address[index]}
 ${zabbix_hostname[index]} ansible_host=${zabbix_ipv4_address[index]}
 %{ endfor ~}
 
-[elk]
-%{ for index, g in elk_ipv4_address ~}
-${elk_hostname[index]} ansible_host=${elk_ipv4_address[index]}
-%{ endfor ~}
 
 
 [jmeter]
@@ -31,7 +27,6 @@ ${jmeter_hostname[index]} ansible_host=${jmeter_ipv4_address[index]}
 postgres
 wordpress
 zabbix
-elk
 
 [all_vm:vars]
 ansible_ssh_user=${host_user}

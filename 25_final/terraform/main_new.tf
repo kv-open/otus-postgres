@@ -41,15 +41,7 @@ variable "zabbix_server_ip" {
   default = ["192.168.137.13"]
 }
 
-variable "elk_server_name" {
-  type    = list(any)
-  default = ["elk"]
-}
 
-variable "elk_server_ip" {
-  type    = list(any)
-  default = ["192.168.137.14"]
-}
 
 variable "jmeter_server_name" {
   type    = list(any)
@@ -213,46 +205,6 @@ resource "yandex_compute_instance" "zabbix" {
 
 }
 
-resource "yandex_compute_instance" "elk" {
-  count       = length(var.elk_server_name)
-  name        = element(var.elk_server_name, count.index)
-  hostname    = element(var.elk_server_name, count.index)
-  platform_id = "standard-v2"
-  zone        = "ru-central1-a"
-
-  resources {
-    cores         = 2
-    memory        = 4
-    core_fraction = "20"
-  }
-
-  scheduling_policy {
-    preemptible = true
-  }
-
-  boot_disk {
-    auto_delete = "true"
-    initialize_params {
-      image_id = data.yandex_compute_image.container-optimized-image.id
-      size     = 10
-      type     = "network-ssd"
-    }
-
-  }
-
-  network_interface {
-    subnet_id  = yandex_vpc_subnet.lab-subnet-a.id
-    nat        = "true"
-    ip_address = element(var.elk_server_ip, count.index)
-  }
-
-  metadata = {
-    ssh-keys           = "var.host_user:${file(var.ssh_public_key_file)}"
-    serial-port-enable = 1
-  }
-
-}
-
 
 resource "yandex_compute_instance" "jmeter" {
   count       = length(var.jmeter_server_name)
@@ -308,8 +260,6 @@ resource "local_file" "ansibleInventory" {
       wordpress_ipv4_address = yandex_compute_instance.wordpress[*].network_interface[0].nat_ip_address,
       zabbix_hostname        = yandex_compute_instance.zabbix[*].name,
       zabbix_ipv4_address    = yandex_compute_instance.zabbix[*].network_interface[0].nat_ip_address,
-      elk_hostname           = yandex_compute_instance.elk[*].name,
-      elk_ipv4_address       = yandex_compute_instance.elk[*].network_interface[0].nat_ip_address,
       jmeter_hostname        = yandex_compute_instance.jmeter[*].name,
       jmeter_ipv4_address    = yandex_compute_instance.jmeter[*].network_interface[0].nat_ip_address,
       ssh_key                = var.ssh_private_key_file,

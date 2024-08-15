@@ -1,6 +1,6 @@
 ---
 - name: Install zabbix agent
-  hosts: zabbix
+  hosts: "{{ hosts }}"
   become: yes
 
   roles:

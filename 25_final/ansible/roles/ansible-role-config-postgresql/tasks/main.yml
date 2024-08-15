@@ -2,9 +2,9 @@
   import_tasks: Debian.yml
   when: ansible_os_family == 'Debian'
 
-# - name: "Include tasks for pgwatch2"
-#   import_tasks: pgwatch2.yml
-#   when: is_it_primary|bool == true
+- name: "Include tasks for pgwatch2"
+  import_tasks: pgwatch2.yml
+  when: is_it_primary|bool == true
 
 # - name: "Include tasks for create extensions"
 #   import_tasks: extensions.yml

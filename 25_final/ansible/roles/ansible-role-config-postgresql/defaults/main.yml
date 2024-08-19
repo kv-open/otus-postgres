@@ -36,27 +36,7 @@ max_parallel_workers_per_gather: 4
 pgwatch2_sql_user: srv_pgwatch2 # учетная запись под которой pgwatch подключается в postgres
 
 
-# extensions_query_list:
-#   queries:
-#     - create extension if not exists pg_stat_statements;
-#     - create extension if not exists pg_wait_sampling;
-#     - create extension if not exists pg_stat_kcache;
-#   db_name:
-#     - stf_das
-#     - stf_das_clickhouse
-#     - stf_dbs
-#     - stf_dpk
-#     - stf_fias
-#     - stf_ics
-#     - stf_kms
-#     - stf_lps
-#     - stf_pki
-#     - stf_ppa
-#     - stf_pci
 
-# additional_permissions_list:
-#   queries:
-#     - GRANT EXECUTE ON FUNCTION pg_ls_dir(text) TO "{{ pgwatch2_sql_user }}";
 
 # backup config
 backup_instance: otus
